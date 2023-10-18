@@ -18,6 +18,7 @@ class CreateTeamsTable extends Migration
             $table->string('name');
             $table->string('country');
             $table->string('founder');
+            $table->string('founders');
             $table->timestamps();
         });
     }
