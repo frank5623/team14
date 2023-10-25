@@ -17,7 +17,7 @@ class CreateGameTable extends Migration
             $table->id()->comment('編號(主鍵)')->unasigned();
             $table->string('Name',255)->comment('遊戲名稱');
             $table->string('Publisher',255)->comment('發行商');
-            $table->integer('d_id')->comment('開發商id(外部鍵)')->unasigned();
+            $table->integer('d_id')->comment('開發商id(外部鍵)')->unasigned()->references('developers')->on('id');
             $table->date('Release_Date')->comment('發行時間');
             $table->float('Price')->comment('價格')->nullable();
             $table->integer('Peak_Player')->comment('歷史尖峰人數')->nullable()->unasigned();
