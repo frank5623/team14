@@ -15,10 +15,10 @@ class CreateDevelopersTable extends Migration
     {
         Schema::create('Developers', function (Blueprint $table) {
             $table->id()->comment('編號(主鍵)');
-            $table->string('name')->comment('廠商名');
-            $table->string('country')->comment('國籍');
-            $table->date('found_date')->comment('成立日期');
-            $table->string('founder')->comment('創辦人');
+            $table->string('name',255)->comment('廠商名');
+            $table->string('country',50)->comment('國籍')->nullable();
+            $table->date('found_date')->comment('成立日期')->nullable();
+            $table->string('founder',255)->comment('創辦人')->nullable();
             $table->timestamps();
         });
     }
