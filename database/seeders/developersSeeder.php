@@ -130,14 +130,11 @@ class developersSeeder extends Seeder
         $day =  rand(1,31);
         $is_leap = false;
         if(($year%4==0&&$year%100!=0)||$year%400==0) $is_leap=true;
-        if(in_array($month,[2,4,6,9,11])&&$day==31)
+        if(in_array($month,[2,4,6,9,11])&&$day==31)$day = 30;
+        if($month==2&&$day>=29)
         {
-            $day = 30;
-            if($month==2)
-            {
-                if($is_leap=true)$day = 29;
-                if($is_leap=false)$day = 28;
-            }
+            if($is_leap==true)$day = 29;
+            if($is_leap==false)$day = 28;
         }
         
         $date = $year .'-'.$month.'-'.$day;

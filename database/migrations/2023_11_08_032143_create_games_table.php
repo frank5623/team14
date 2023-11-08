@@ -13,7 +13,7 @@ class CreateGamesTable extends Migration
      */
     public function up()
     {
-        Schema::create('Game', function (Blueprint $table) {
+        Schema::create('Games', function (Blueprint $table) {
             $table->id()->comment('編號(主鍵)')->unasigned();
             $table->string('Name',255)->comment('遊戲名稱');
             $table->string('Publisher',255)->comment('發行商');
@@ -33,6 +33,6 @@ class CreateGamesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('games');
+        Schema::dropIfExists('Games');
     }
 }
