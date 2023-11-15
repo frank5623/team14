@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\GamesController;
+use App\Http\Controllers\DevelopersController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('./', function () {
+    return redirect('games');
 });
+
+Route::get('games', [GamesController::class, 'index']);
+Route::get('developers', [DevelopersController::class, 'index']);
