@@ -18,5 +18,5 @@ Route::get('./', function () {
     return redirect('games');
 });
 
-Route::get('games', [GamesController::class, 'index']);
-Route::get('developers', [DevelopersController::class, 'index']);
+Route::get('games', [GamesController::class, 'index'])->name('games.index');
+Route::get('developers', [DevelopersController::class, 'index'])->name('developers.index');
