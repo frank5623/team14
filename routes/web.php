@@ -14,8 +14,8 @@ use App\Http\Controllers\DevelopersController;
 |
 */
 
-Route::get('./', function () {
-    return redirect('games');
+Route::get('/', function () {
+    return view('welcome');
 });
 
 Route::get('games', [GamesController::class, 'index'])->name('games.index');

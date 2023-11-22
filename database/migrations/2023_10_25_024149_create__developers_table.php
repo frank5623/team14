@@ -13,7 +13,7 @@ class CreateDevelopersTable extends Migration
      */
     public function up()
     {
-        Schema::create('Developers', function (Blueprint $table) {
+        Schema::create('developers', function (Blueprint $table) {
             $table->id()->comment('編號(主鍵)');
             $table->string('name',255)->comment('廠商名');
             $table->string('country',50)->comment('國籍')->nullable();

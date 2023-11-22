@@ -13,11 +13,11 @@ class CreateGamesTable extends Migration
      */
     public function up()
     {
-        Schema::create('Games', function (Blueprint $table) {
+        Schema::create('games', function (Blueprint $table) {
             $table->id()->comment('編號(主鍵)')->unasigned();
             $table->string('name',255)->comment('遊戲名稱');
             $table->string('publisher',255)->comment('發行商');
-            $table->foreign_id('d_id')->comment('開發商id(外部鍵)')->unasigned()->references('developers')->on('id');
+            $table->foreignid('d_id')->comment('開發商id(外部鍵)')->unasigned()->references('developers')->on('id');
             $table->date('release_Date')->comment('發行時間');
             $table->float('price')->comment('價格')->nullable();
             $table->integer('peak_Player')->comment('歷史尖峰人數')->nullable()->unasigned();
