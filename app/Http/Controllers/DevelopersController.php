@@ -13,7 +13,9 @@ class DevelopersController extends Controller
      */
     public function index()
     {
-        return Developer::all()->toArray();
+        $D = Developer::all()->toArray();
+
+        return view("developers.index")->with("developers",$D);
     }
 
     /**
