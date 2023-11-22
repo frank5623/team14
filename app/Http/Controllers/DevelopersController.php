@@ -13,7 +13,8 @@ class DevelopersController extends Controller
      */
     public function index()
     {
-        return Developer::all()->toArray();
+        $developers = Developer::all()->toArray();
+        return view('developers.index')->with('developers',$developers);
     }
 
     /**
