@@ -13,7 +13,8 @@ class GamesController extends Controller
      */
     public function index()
     {
-        return Game::all()->toArray();
+        $game = Game::all()->toArray();
+        return view('games.index')->with('games',$game);
     }
 
     /**
