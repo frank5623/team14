@@ -47,7 +47,7 @@ class DevelopersController extends Controller
      */
     public function show($id)
     {
-        //
+        return Developer::findOrFail($id)->toArray();
     }
 
     /**
@@ -58,7 +58,7 @@ class DevelopersController extends Controller
      */
     public function edit($id)
     {
-        //
+        return Developer::findOrFail($id)->toArray();
     }
 
     /**
