@@ -1,8 +1,9 @@
-<html>
-<head>
-    <title>遊戲列表</title>
-</head>
-<body>
+@extends('app')
+
+@section('title', 'steam網站 - 列出所有遊戲')
+
+@section('steam_contents')
+
     <h1>遊戲列表</h1><br/>
 
 <table border="1">
@@ -33,10 +34,10 @@
             <td>{{ $games[$i]["gametype"] }}</td>
             <td><a href="{{ route('games.show', ['id'=>$games[$i]['id']]) }}">顯示</a></td>
             <td><a href="{{ route('games.edit', ['id'=>$games[$i]['id']]) }}">修改</a></td>
+            <td>刪除</td>
         </tr>
 
     @endfor
 </table>
-</body>
 
-</html>
+@endsection
