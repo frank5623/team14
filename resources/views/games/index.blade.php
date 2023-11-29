@@ -1,9 +1,6 @@
-<html>
-    <head>
-
-    </head>
-    <body>
-        
+@extends('app')
+@section('title','遊戲列表')
+@section('game_content')
         <table border=1 border-collapse=collapse>
                 <th> id</th>
                 <th> Game name</th>
@@ -33,6 +30,4 @@
             </tr>
             @endforeach
         </table>
-
-    </body>
-</html>
+@endsection

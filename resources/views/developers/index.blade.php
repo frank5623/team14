@@ -1,9 +1,6 @@
-<html>
-    <head>
-
-    </head>
-    <body>
-        
+@extends('app')
+@section('title','開發商列表')
+@section('game_content')
         <table border=1 border-collapse=collapse>
                 <th> name</th>
                 <th> country</th>
@@ -26,6 +23,4 @@
             </tr>
             @endforeach
         </table>
-
-    </body>
-</html>
+@endsection
