@@ -13,7 +13,10 @@ class DevelopersController extends Controller
      */
     public function index()
     {
-        return Developer::all()->toArray();
+        $D = Developer::all()->toArray();
+        
+        return view("developers.index")->with("developers",$D);
+        
     }
 
     /**
@@ -45,7 +48,7 @@ class DevelopersController extends Controller
      */
     public function show($id)
     {
-        //
+        return Developer::FindOrFail($id)->toArray();
     }
 
     /**
@@ -56,7 +59,7 @@ class DevelopersController extends Controller
      */
     public function edit($id)
     {
-        //
+        return Developer::FindOrFail($id)->toArray();
     }
 
     /**

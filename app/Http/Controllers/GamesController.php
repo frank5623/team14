@@ -13,7 +13,10 @@ class GamesController extends Controller
      */
     public function index()
     {
-        return Game::all()->toArray();
+        $G = Game::all()->toArray();
+        
+        return view("games.index")->with("games",$G);
+
     }
 
     /**
@@ -45,7 +48,7 @@ class GamesController extends Controller
      */
     public function show($id)
     {
-        //
+        return Game::FindOrFail($id)->toArray();
     }
 
     /**
@@ -56,7 +59,7 @@ class GamesController extends Controller
      */
     public function edit($id)
     {
-        //
+        return Game::FindOrFail($id)->toArray();
     }
 
     /**
