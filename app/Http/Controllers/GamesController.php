@@ -47,7 +47,7 @@ class GamesController extends Controller
      */
     public function show($id)
     {
-        //
+        return Game::findOrFail($id)->toArray();
     }
 
     /**
@@ -58,7 +58,7 @@ class GamesController extends Controller
      */
     public function edit($id)
     {
-        //
+        return Game::findOrFail($id)->toArray();
     }
 
     /**
