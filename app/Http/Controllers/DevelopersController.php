@@ -46,7 +46,8 @@ class DevelopersController extends Controller
      */
     public function show($id)
     {
-        //
+        $developer = Developer::FindOrFail($id);
+        return view('developers.show')->with('developer',$developer);
     }
 
     /**
@@ -57,7 +58,8 @@ class DevelopersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $developer = Developer::FindOrFail($id);
+        return view('developers.show')->with('developer',$developer);
     }
 
     /**
@@ -80,6 +82,7 @@ class DevelopersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $developers = Developer::all()->toArray();
+        return view('developers.index')->with('developers',$developers);
     }
 }

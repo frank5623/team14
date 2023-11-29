@@ -46,7 +46,8 @@ class GamesController extends Controller
      */
     public function show($id)
     {
-        //
+        $game = Game::FindOrFail($id);
+        return view('games.show')->with('game',$game);
     }
 
     /**
@@ -57,7 +58,8 @@ class GamesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $game = Game::FindOrFail($id);
+        return view('games.show')->with('game',$game);
     }
 
     /**
@@ -80,6 +82,7 @@ class GamesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $game = Game::all()->toArray();
+        return view('games.index')->with('games',$game);
     }
 }
