@@ -15,8 +15,15 @@ use App\Http\Controllers\DevelopersController;
 */
 
 Route::get('/', function () {
-    return redirect('games');
+    return view('MainPage');
 });
 
 Route::get('games', [GamesController::class, 'index'])->name('games.index');
+Route::get('games/{id}', [GamesController::class, 'show'])->name('games.show');
+Route::get('games/{id}/edit', [GamesController::class, 'edit'])->name('games.edit');
+Route::get('games/delete/{id}', [GamesController::class, 'destroy'])->name('games.delete');
+
 Route::get('developers', [DevelopersController::class, 'index'])->name('developers.index');
+Route::get('developers/{id}', [DevelopersController::class, 'show'])->name('developers.show');
+Route::get('developers/{id}/edit', [DevelopersController::class, 'edit'])->name('developers.edit');
+Route::get('developers/delete/{id}', [DevelopersController::class, 'destroy'])->name('developers.delete');
