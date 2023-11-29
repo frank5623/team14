@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', 'steam網站 - 列出所有遊戲')
+@section('title', 'steam網站 - 列出所有開發商')
 
 @section('steam_contents')
 
