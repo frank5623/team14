@@ -24,10 +24,14 @@ Route::get('games/{id}', [GamesController::class, 'show'])->where('id', '[0-9]+'
 // 修改單一球員表單
 Route::get('games/{id}/edit', [GamesController::class, 'edit'])->where('id', '[0-9]+')->name('games.edit');
 
+Route::delete('games/delete/{id}', [GamesController::class, 'destroy'])->where('id', '[0-9]+')->name('games.destroy');
+
 // 顯示顯示所有球隊資料
 Route::get('developers', [DevelopersController::class, 'index'])->name('developers.index');
 // 顯示單一球隊資料
 Route::get('developers/{id}', [DevelopersController::class, 'show'])->where('id', '[0-9]+')->name('developers.show');
 // 修改單一球隊表單
 Route::get('developers/{id}/edit', [DevelopersController::class, 'edit'])->where('id', '[0-9]+')->name('developers.edit');
+
+Route::delete('developers/delete/{id}', [DevelopersController::class, 'destroy'])->where('id', '[0-9]+')->name('developers.destroy');
 

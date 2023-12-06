@@ -7,7 +7,7 @@
     <h1>開發商列表</h1><br/>
     <table border="1">
     <tr>
-        <th>流水號(內部鍵)</th>
+        <th>流水號</th>
         <th>廠商名</th>
         <th>註冊國籍</th>
         <th>成立年份</th>

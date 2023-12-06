@@ -8,10 +8,10 @@
 
 <table border="1">
     <tr>
-        <th>流水號(內部鍵)</th>
+        <th>流水號</th>
         <th>遊戲名</th>
         <th>發行商</th>
-        <th>開發商(外部鍵)</th>
+        <th>開發商</th>
         <th>發行時間</th>
         <th>價錢(TWD)</th>
         <th>歷史尖峰人數</th>

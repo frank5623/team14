@@ -83,6 +83,8 @@ class GamesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $Game = Game::findOrFail($id);
+        $Game->delete();
+        return redirect('games');
     }
 }

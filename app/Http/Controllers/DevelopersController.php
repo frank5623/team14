@@ -85,6 +85,8 @@ class DevelopersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $Developer = Developer::findOrFail($id);
+        $Developer->delete();
+        return redirect('developers');
     }
 }

@@ -19,4 +19,10 @@ class Developer extends Model
     {
         return $this->hasMany('App\Models\Game', 'd_id');
     }
+
+    public function delete()
+    {
+        $this->games()->delete();
+        return parent::delete();
+    }  
 }
