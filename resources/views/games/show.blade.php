@@ -8,7 +8,7 @@
 流水號:{{ $game->id }}<br/>
 遊戲名:{{ $game->name }}<br/>
 發行商:{{ $game->publisher }}<br/>
-開發商(外部建):{{ $game->d_id }}<br/>
+開發商(外部建):{{ $game->developer->name }}<br/>
 發行時間:{{ $game->release_date }}<br/>
 價錢(TWD):{{ $game->price }}<br/>
 歷史尖峰人數:{{ $game->peak_player }}<br/>

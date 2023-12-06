@@ -14,4 +14,9 @@ class Developer extends Model
         'found_date',
         'founder'
     ];
+
+    public function games()
+    {
+        return $this->hasMany('App\Models\Game', 'd_id');
+    }
 }

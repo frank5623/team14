@@ -21,23 +21,28 @@
         <th>操作3</th>
     </tr>    
 
-    @for ($i = 0; $i < count($games); $i++)
+    @foreach($games as $game)
 
         <tr>
-            <td>{{ $games[$i]["id"] }}</td>    
-            <td>{{ $games[$i]["name"] }}</td>
-            <td>{{ $games[$i]["publisher"] }}</td>
-            <td>{{ $games[$i]["d_id"] }}</td>
-            <td>{{ $games[$i]["release_date"] }}</td>
-            <td>{{ $games[$i]["price"] }}</td>
-            <td>{{ $games[$i]["peak_player"] }}</td>
-            <td>{{ $games[$i]["gametype"] }}</td>
-            <td><a href="{{ route('games.show', ['id'=>$games[$i]['id']]) }}">顯示</a></td>
-            <td><a href="{{ route('games.edit', ['id'=>$games[$i]['id']]) }}">修改</a></td>
-            <td>刪除</td>
+            <td>{{ $game->id }}</td>    
+            <td>{{ $game->name }}</td>
+            <td>{{ $game->publisher }}</td>
+            <td>{{ $game->developer->name }}</td>
+            <td>{{ $game->release_date }}</td>
+            <td>{{ $game->price }}</td>
+            <td>{{ $game->peak_player }}</td>
+            <td>{{ $game->gametype }}</td>
+            <td><a href="{{ route('games.show', ['id'=>$game->id]) }}">顯示</a></td>
+            <td><a href="{{ route('games.edit', ['id'=>$game->id]) }}">修改</a></td>
+            <td>
+                <form action="{{ url('/games/delete', ['id' => $game->id]) }}" method="post">
+                    <input class="btn btn-default" type="submit" value="刪除" />
+                    @method('delete')
+                    @csrf
+                </form>
+            </td>
         </tr>
-
-    @endfor
+    @endforeach
 </table>
 
 @endsection

@@ -17,20 +17,25 @@
         <th>操作3</th>
     </tr>    
 
-    @for ($i = 0; $i < count($developers); $i++)
+    @foreach($developers as $developer)
 
         <tr>
-            <td>{{ $developers[$i]["id"] }}</td>    
-            <td>{{ $developers[$i]["name"] }}</td>
-            <td>{{ $developers[$i]["country"] }}</td>
-            <td>{{ $developers[$i]["found_date"] }}</td>
-            <td>{{ $developers[$i]["founder"] }}</td>
-            <td><a href="{{ route('developers.show', ['id'=>$developers[$i]['id']]) }}">顯示</a></td>
-            <td><a href="{{ route('developers.edit', ['id'=>$developers[$i]['id']]) }}">修改</a></td>
-            <td>刪除</td>
+            <td>{{ $developer->id }}</td>    
+            <td>{{ $developer->name }}</td>
+            <td>{{ $developer->country }}</td>
+            <td>{{ $developer->found_date }}</td>
+            <td>{{ $developer->founder }}</td>
+            <td><a href="{{ route('developers.show', ['id'=>$developer->id]) }}">顯示</a></td>
+            <td><a href="{{ route('developers.edit', ['id'=>$developer->id]) }}">修改</a></td>
+            <td>
+                <form action="{{ url('/developers/delete', ['id' => $developer->id]) }}" method="post">
+                    <input class="btn btn-default" type="submit" value="刪除" />
+                    @method('delete')
+                    @csrf
+                </form>
+            </td>
         </tr>
-
-    @endfor
+    @endforeach
 </table>
 
 @endsection

@@ -13,7 +13,7 @@ class DevelopersController extends Controller
      */
     public function index()
     {
-        $D = Developer::all()->toArray();
+        $D = Developer::all();
 
         return view("developers.index")->with("developers",$D);
     }
@@ -47,9 +47,11 @@ class DevelopersController extends Controller
      */
     public function show($id)
     {
+        // 從 Model 拿資料
         $Developer = Developer::findOrFail($id);
-
-        return view("developers.show")->with("developer",$Developer);
+        $game = $Developer->games;
+        // 把資料送給 view
+        return view('developers.show', ['developer'=>$Developer, 'games'=>$game]);
     }
 
     /**
