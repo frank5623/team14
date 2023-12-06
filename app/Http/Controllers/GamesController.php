@@ -47,7 +47,7 @@ class GamesController extends Controller
     public function show($id)
     {
         $game = Game::FindOrFail($id);
-        return view('games.show')->with('game',$game);
+        return view('games.show',['game'=>$game]);
     }
 
     /**
@@ -82,7 +82,8 @@ class GamesController extends Controller
      */
     public function destroy($id)
     {
-        $game = Game::all()->toArray();
-        return view('games.index')->with('games',$game);
+        $game = Game::findOrFail($id);
+        $game->delete();
+        return redirect('games');
     }
 }

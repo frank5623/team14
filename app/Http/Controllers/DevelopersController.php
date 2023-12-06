@@ -47,7 +47,8 @@ class DevelopersController extends Controller
     public function show($id)
     {
         $developer = Developer::FindOrFail($id);
-        return view('developers.show')->with('developer',$developer);
+        $game = $developer->games;
+        return view('developers.show',['developer'=>$developer,'games'=>$game]);
     }
 
     /**
@@ -82,7 +83,9 @@ class DevelopersController extends Controller
      */
     public function destroy($id)
     {
-        $developers = Developer::all()->toArray();
-        return view('developers.index')->with('developers',$developers);
+        $developers = Developer::FindOrFail($id);
+        $developers->delete();
+        
+        return redirect('developers');
     }
 }

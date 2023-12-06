@@ -16,4 +16,8 @@ class Game extends Model
         'peak_player',
         'game_type'
     ];
+    public function developer()
+    {
+        return $this->belongsTo('App\Models\Developer','id','d_id');
+    }
 }

@@ -5,6 +5,7 @@
     id：{{$game['id']}} <br>
     Game name：{{$game['name']}} <br>
     publisher：{{$game['publisher']}}<br>
+    developer：{{$game['d_id']}}<br>
     release_date：{{$game['release_date']}} <br>
     price：{{$game['price']}}<br>
     peak_player：{{$game['peak_player']}}<br>
