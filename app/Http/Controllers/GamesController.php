@@ -47,7 +47,9 @@ class GamesController extends Controller
      */
     public function show($id)
     {
-        return Game::findOrFail($id)->toArray();
+        $Game = Game::findOrFail($id);
+
+        return view("games.show")->with("game",$Game);
     }
 
     /**

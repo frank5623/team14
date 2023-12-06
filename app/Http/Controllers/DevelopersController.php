@@ -47,7 +47,9 @@ class DevelopersController extends Controller
      */
     public function show($id)
     {
-        return Developer::findOrFail($id)->toArray();
+        $Developer = Developer::findOrFail($id);
+
+        return view("developers.show")->with("developer",$Developer);
     }
 
     /**
