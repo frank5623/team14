@@ -1,9 +1,6 @@
-<html>
-    <head>
-
-    </head>
-    <body>
-        
+@extends('app')
+@section('title','{{$game}}')
+@section('game_content')    
         <table border=1 border-collapse=collapse>
                 <th> id</th>
                 <th> Game name</th>
@@ -22,6 +19,4 @@
                 <td>{{$game['gametype']}} </td>
             </tr>
         </table>
-
-    </body>
-</html>
+@endsection

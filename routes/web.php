@@ -14,8 +14,9 @@ use App\Http\Controllers\DevelopersController;
 |
 */
 
+
 Route::get('/', function () {
-    return view('MainPage');
+    return view('app');
 });
 
 Route::get('games', [GamesController::class, 'index'])->name('games.index');
