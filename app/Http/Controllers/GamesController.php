@@ -48,7 +48,11 @@ class GamesController extends Controller
      */
     public function show($id)
     {
-        return Game::FindOrFail($id)->toArray();
+         // 從 Model 拿資料
+         $game = Game::findOrFail($id);
+         // 把資料送給 view
+         return view('games.show')->with('game', $game);    
+        
     }
 
     /**
@@ -82,6 +86,8 @@ class GamesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $game = Game::findOrFail($id);
+        $game->delete();
+        return redirect('games');
     }
 }

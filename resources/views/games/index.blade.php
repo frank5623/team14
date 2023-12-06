@@ -20,8 +20,7 @@
         <th>操作3</th>
     </tr>
 
-
-@for ($i = 0; $i < count($games); $i++)
+    @for ($i = 0; $i < count($games); $i++)
     <tr>
         <td> {{ $games[$i]["name"] }} </td>
         <td> {{ $games[$i]["publisher"] }}</td>
@@ -32,8 +31,14 @@
         <td> {{ $games[$i]["gametype"] }}</td>
         <td><a href="{{route('games.show', ['id'=>$games[$i]['id']]) }}">顯示</a></td>
         <td><a href="{{route('games.edit', ['id'=>$games[$i]['id']]) }}">修改</a></td>
-        <td>刪除</td>
+        <td>
+            <form action="{{ url('/games/delete', ['id'=>$games[$i]['id']]) }}" method="post">
+                <input class="btn btn-default" type="submit" value="刪除" />
+                @method('delete')
+                 @csrf
+            </form>
+        </td>
     </tr>
-@endfor
+    @endfor
 <table>
 @endsection

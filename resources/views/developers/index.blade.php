@@ -27,7 +27,13 @@
         <td>{{ $developers[$i]["founder"] }}</td>
         <td><a href="{{route('developers.show', ['id'=>$developers[$i]['id']]) }}">顯示</a></td>
         <td><a href="{{route('developers.edit', ['id'=>$developers[$i]['id']]) }}">修改</a></td>
-        <td>刪除</td>
+        <td>  
+            <form action="{{ url('/developers/delete', ['id'=>$developers[$i]['id']]) }}" method="post">
+                <input class="btn btn-default" type="submit" value="刪除" />
+                @method('delete')
+                 @csrf
+            </form>
+        </td>
     </tr>
 @endfor
 <table>

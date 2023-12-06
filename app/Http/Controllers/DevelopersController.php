@@ -48,7 +48,10 @@ class DevelopersController extends Controller
      */
     public function show($id)
     {
-        return Developer::FindOrFail($id)->toArray();
+        $developer = Developer::findOrFail($id);
+        $game = $developer->games;
+         // 把資料送給 view
+         return view('developers.show', ['developer' => $developer, 'games'=>$game]);
     }
 
     /**
@@ -57,7 +60,7 @@ class DevelopersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id)   
     {
         return Developer::FindOrFail($id)->toArray();
     }
@@ -82,6 +85,8 @@ class DevelopersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $developer = Developer::findOrFail($id);
+        $developer->delete();
+        return redirect('developers');
     }
 }

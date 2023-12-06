@@ -14,4 +14,15 @@ class Developer extends Model
         'found_date',
         'founder'
     ];
+
+    public function developers()
+    {
+        return $this->hasMany('App\Models\game', 'd_id');
+    }
+
+    public function delete()
+    {
+        $this->developers()->delete();
+        return parent::delete();
+    }        
 }
