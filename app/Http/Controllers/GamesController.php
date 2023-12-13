@@ -55,7 +55,7 @@ class GamesController extends Controller
             'price'=>$price,
             'peak_player'=>$peak_player,
             'gametype'=>$gametype]);
-        return redirect('gmaes');
+        return redirect('games');
     }
 
     /**
@@ -80,7 +80,7 @@ class GamesController extends Controller
     public function edit($id)
     {
         $game = Game::findOrFail($id);
-        $game = Game::orderBy('developers.id', 'asc')->pluck('developers.name', 'developers.id');
+        $developers = Developer::orderBy('developers.id', 'asc')->pluck('developers.name', 'developers.id');
         $selected_tags = $game->developer->id;
         return view('games.edit', ['game' =>$game, 'developers' => $developers, 'developerSelected' => $selected_tags]);
     }

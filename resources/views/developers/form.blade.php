@@ -8,7 +8,7 @@
 </div>
 <div class="form-group">
     {!! Form::label('found_date', '成立年份：') !!}
-    {!! Form::text('found_date', null, ['class' => 'form-control']) !!}
+    {!! Form::date('found_date', null, ['class' => 'form-control']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('founder', '創辦人：') !!}
