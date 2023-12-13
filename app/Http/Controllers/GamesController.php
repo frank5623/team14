@@ -47,7 +47,7 @@ class GamesController extends Controller
         $peak_player = $request->input('peak_player');
         $gametype = $request->input('gametype');
 
-        $player = Player::create([
+        $game = Game::create([
             'name'=>$name,
             'd_id'=>$d_id,
             'publisher'=>$publisher,

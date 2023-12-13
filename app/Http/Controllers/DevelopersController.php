@@ -37,7 +37,19 @@ class DevelopersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $name = $request->input('name');
+        $country = $request->input('country');
+        $found_date = $request->input('found_date');
+        $founder = $request->input('founder');
+
+        Developer::create([
+            'name' => $name,
+            'country' => $country,
+            'found_date' => $found_date,
+            'founder' => $founder
+        ]);
+
+        return redirect('developers');
     }
 
     /**
@@ -76,7 +88,15 @@ class DevelopersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $developer = Developer::findOrFail($id);
+
+        $developer->name = $request->input('name');
+        $developer->country = $request->input('country');
+        $developer->found_date = $request->input('found_date');
+        $developer->founder= $request->input('founder');
+        $developer->save();
+
+        return redirect('developers');
     }
 
     /**

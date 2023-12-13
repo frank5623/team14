@@ -3,7 +3,7 @@
     {!! Form::text('name', null, ['class' => 'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('d_id', '所屬球隊：') !!}
+    {!! Form::label('d_id', '所屬開發商：') !!}
     {!! Form::select('d_id', $developers, $developerSelected, ['class' => 'form-control']) !!}
 </div>
 <div class="form-group">
