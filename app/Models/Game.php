@@ -9,8 +9,10 @@ class Game extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'id',
         'name',
         'publisher',
+        'd_id',
         'release_date',
         'price',
         'peak_player',
@@ -19,6 +21,6 @@ class Game extends Model
 
     public function Developer()
     {
-        return $this->belongsTo('App\Models\Developer', 'id', 'd_id');
+        return $this->belongsTo('App\Models\Developer', 'd_id', 'id');
     }
 }

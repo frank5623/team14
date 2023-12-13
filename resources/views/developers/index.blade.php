@@ -4,7 +4,10 @@
 @section('title', 'steam網站 - 列出所有開發商列表')
 
 @section('steam_contents')
-<h1>列出所有開發商列表</h1><br/>
+<div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
+    <a href="{{ route('developers.create') }} ">新增開發商</a>
+    <a href="{{ route('developers.index') }} ">所有開發商</a>
+</div>
 <table border=1>
     <tr>
         <th>流水號_id</th>
@@ -18,23 +21,23 @@
     </tr>
 
 
-@for ($i = 0; $i < count($developers); $i++)
+    @foreach($developers as $developer)
     <tr>
-        <td> {{ $developers[$i]["id"] }} </td>
-        <td> {{ $developers[$i]["name"] }}</td>
-        <td>{{ $developers[$i]["country"] }}</td>
-        <td>{{ $developers[$i]["found_date"] }}</td>
-        <td>{{ $developers[$i]["founder"] }}</td>
-        <td><a href="{{route('developers.show', ['id'=>$developers[$i]['id']]) }}">顯示</a></td>
-        <td><a href="{{route('developers.edit', ['id'=>$developers[$i]['id']]) }}">修改</a></td>
+        <td> {{ $developer->id }} </td>
+        <td> {{ $developer->name }}</td>
+        <td>{{ $developer->country }}</td>
+        <td>{{ $developer->found_date }}</td>
+        <td>{{ $developer->founder }}</td>
+        <td><a href="{{route('developers.show', ['id'=>$developer->id]) }}">顯示</a></td>
+        <td><a href="{{route('developers.edit', ['id'=>$developer->id]) }}">修改</a></td>
         <td>  
-            <form action="{{ url('/developers/delete', ['id'=>$developers[$i]['id']]) }}" method="post">
+            <form action="{{ url('/developers/delete', ['id'=>$developer->id]) }}" method="post">
                 <input class="btn btn-default" type="submit" value="刪除" />
                 @method('delete')
                  @csrf
             </form>
         </td>
     </tr>
-@endfor
-<table>
+@endforeach
+</table>
 @endsection

@@ -28,8 +28,17 @@ Route::get('games', [GamesController::class, 'index'])->name('games.index');
 Route::get('games/{id}', [GamesController::class, 'show'])->where('id', '[0-9]+')->name('games.show');
 // 修改單一遊戲表單
 Route::get('games/{id}/edit', [GamesController::class, 'edit'])->where('id', '[0-9]+')->name('games.edit');
-// 刪除單一球員資料
+// 刪除單一遊戲資料
 Route::delete('games/delete/{id}', [GamesController::class, 'destroy'])->where('id', '[0-9]+')->name('games.destroy');
+// 新增遊戲表單
+Route::get('games/create', [GamesController::class, 'create'])->name('games.create');
+// 修改遊戲表單
+Route::get('games/{id}/edit', [GamesController::class, 'edit'])->where('id', '[0-9]+')->name('games.edit');
+// 修改遊戲資料
+Route::patch('games/update/{id}', [GamesController::class, 'update'])->where('id', '[0-9]+')->name('games.update');
+// 儲存新遊戲資料
+Route::post('games/store', [GamesController::class, 'store'])->where('id', '[0-9]+')->name('games.store');
+
 
 
 
@@ -41,3 +50,11 @@ Route::get('developers/{id}', [DevelopersController::class, 'show'])->where('id'
 Route::get('developers/{id}/edit', [DevelopersController::class, 'edit'])->where('id', '[0-9]+')->name('developers.edit');
 // 刪除單一球隊及旗下球員資料
 Route::delete('developers/delete/{id}', [DevelopersController::class, 'destroy'])->where('id', '[0-9]+')->name('developers.destroy');
+// 新增球隊表單
+Route::get('developers/create', [DevelopersController::class, 'create'])->name('developers.create');
+// 修改球隊表單
+Route::get('developers/{id}/edit', [DevelopersController::class, 'edit'])->where('id', '[0-9]+')->name('developers.edit');
+// 修改球隊資料
+Route::patch('developers/update/{id}', [DevelopersController::class, 'update'])->where('id', '[0-9]+')->name('developers.update');
+// 儲存新球隊資料
+Route::post('developers/store', [DevelopersController::class, 'store'])->name('developers.store');
