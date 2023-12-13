@@ -20,11 +20,19 @@ Route::get('/', function () {
 });
 
 Route::get('games', [GamesController::class, 'index'])->name('games.index');
-Route::get('games/{id}', [GamesController::class, 'show'])->name('games.show');
-Route::get('games/{id}/edit', [GamesController::class, 'edit'])->name('games.edit');
-Route::delete('games/delete/{id}', [GamesController::class, 'destroy'])->name('games.delete');
+Route::get('games/create', [GamesController::class, 'create'])->where('id','[0-9]+')->name('games.create');
+Route::post('games/store', [GamesController::class, 'store'])->where('id','[0-9]+')->name('games.store');
+Route::get('games/{id}', [GamesController::class, 'show'])->where('id','[0-9]+')->name('games.show');
+Route::get('games/{id}/edit', [GamesController::class, 'edit'])->where('id','[0-9]+')->name('games.edit');
+Route::delete('games/delete/{id}', [GamesController::class, 'destroy'])->where('id','[0-9]+')->name('games.delete');
+Route::patch('games/update/{id}', [GamesController::class, 'update'])->where('id','[0-9]+')->name('games.update');
+
 
 Route::get('developers', [DevelopersController::class, 'index'])->name('developers.index');
-Route::get('developers/{id}', [DevelopersController::class, 'show'])->name('developers.show');
-Route::get('developers/{id}/edit', [DevelopersController::class, 'edit'])->name('developers.edit');
-Route::delete('developers/delete/{id}', [DevelopersController::class, 'destroy'])->name('developers.delete');
+Route::get('developers/create', [DevelopersController::class, 'create'])->where('id','[0-9]+')->name('developers.create');
+Route::post('developers/store', [DevelopersController::class, 'store'])->where('id','[0-9]+')->name('developers.store');
+Route::get('developers/{id}', [DevelopersController::class, 'show'])->where('id','[0-9]+')->name('developers.show');
+Route::get('developers/{id}/edit', [DevelopersController::class, 'edit'])->where('id','[0-9]+')->name('developers.edit');
+Route::delete('developers/delete/{id}', [DevelopersController::class, 'destroy'])->where('id','[0-9]+')->name('developers.delete');
+Route::patch('developers/update/{id}', [DevelopersController::class, 'update'])->where('id','[0-9]+')->name('developers.update');
+

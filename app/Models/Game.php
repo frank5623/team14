@@ -10,14 +10,15 @@ class Game extends Model
     use HasFactory;
     protected $fillable = [
         'name',
+        'd_id',
         'publisher',
         'release_date',
         'price',
         'peak_player',
-        'game_type'
+        'gametype'
     ];
     public function developer()
     {
-        return $this->belongsTo('App\Models\Developer','id','d_id');
+        return $this->belongsTo('App\Models\Developer','d_id','id');
     }
 }

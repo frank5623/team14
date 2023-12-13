@@ -3,12 +3,13 @@
     {!! Form::text('name', null, ['class' => 'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('d_id', '開發商:') !!}
+    {!! Form::label('id', '開發商:') !!}
+    {!! Form::select('d_id', $developers, $teamSelected, ['class' => 'form-control']) !!}
     <!-- 待設計一下拉式選單 -->
 </div>
 <div class="form-group">
     {!! Form::label('publisher','發行商:') !!}
-    {!! Form::date('publisher',null ,['class'=>'form-control']) !!}
+    {!! Form::text('publisher',null ,['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('release_date','發行日期:') !!}
@@ -24,5 +25,8 @@
 </div>
 <div class="form-group">
     {!! Form::label('game_type', '遊戲類型：') !!}
-    {!! Form::text('game_type', null, ['class' => 'form-control']) !!}
+    {!! Form::text('gametype', null, ['class' => 'form-control']) !!}
+</div>
+<div class = "form-group">
+    {!!Form::submit('提交 ',['class'=>'btn btn-primary form-control'])!!}
 </div>

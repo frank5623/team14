@@ -4,8 +4,10 @@
 
 @section('nba_theme', '編輯中的球員')
 
-@section('game_contents')
+@section('game_content')
+
     {!! Form::model($game, ['method'=>'PATCH', 'action'=>['\App\Http\Controllers\GamesController@update', $game->id]]) !!}
+    
     @include('games.form', ['submitButtonText'=>"更新遊戲資料"])
     {!! Form::close() !!}
 @endsection

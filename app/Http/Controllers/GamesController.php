@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Game;
+use App\Models\Developer;
 class GamesController extends Controller
 {
     /**
@@ -13,18 +14,19 @@ class GamesController extends Controller
      */
     public function index()
     {
-        $game = Game::all()->toArray();
+        $game = Game::orderBy('id')->get()->toArray();
         return view('games.index')->with('games',$game);
     }
 
-    /**
+    /*
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('games.create');
+        $developers = Developer::orderBy('developers.id','asc')->pluck('developers.name','developers.id');
+        return view('games.create',['developers'=>$developers,'teamSelected'=>null]);
     }
 
     /**
@@ -35,7 +37,25 @@ class GamesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $name = $request->input('name');
+        $id = $request->input('d_id');
+        $publisher = $request->input('publisher');
+        $release_date = $request->input('release_date');
+        $price = $request->input('price');
+        $peak_player = $request->input('peak_player');
+        $game_type = $request->input('gametype');
+        $game = Game::create([
+            'name'=>$name,
+            'd_id' => $id,
+            'publisher' => $publisher,
+            'release_date' => $release_date,
+            'price' => $price,
+            'peak_player' => $peak_player,
+            'gametype' => $game_type,   
+        ]);
+
+        return redirect('games');
     }
 
     /**
@@ -59,7 +79,10 @@ class GamesController extends Controller
     public function edit($id)
     {
         $game = Game::FindOrFail($id);
-        return view('games.edit')->with('game',$game);
+        $developers = Developer::orderBy('developers.id','asc')->pluck('developers.name','developers.id');
+        $tags = $game->developer->id;
+
+        return view('games.edit',['game'=>$game,'developers'=>$developers,'teamSelected'=>$tags]);
     }
 
     /**
@@ -71,7 +94,17 @@ class GamesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $game = Game::findorFail($id);
+        $game->name = $request->input('name');
+        $game->d_id = $request->input('d_id'); 
+        $game->publisher = $request->input('publisher');
+        $game->release_date = $request->input('release_date');
+        $game->price = $request->input('price');
+        $game->peak_player = $request->input('peak_player');
+        $game->gametype = $request->input('gametype');
+        $game->save();
+        return redirect('games/'.$id);
+        
     }
 
     /**

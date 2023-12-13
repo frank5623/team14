@@ -13,7 +13,7 @@ class DevelopersController extends Controller
      */
     public function index()
     {
-        $developers = Developer::all()->toArray();
+        $developers = Developer::orderBy('id')->get()->toArray();
         return view('developers.index')->with('developers',$developers);
     }
 
@@ -35,7 +35,18 @@ class DevelopersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $name = $request->input('name');
+        $country = $request->input('country');
+        $found_date = $request->input('found_date');
+        $founder = $request->input('founder');
+        $game = Developer::create([
+            'name'=>$name,
+            'country' => $country,
+            'found_date' => $found_date,
+            'founder' => $founder,
+        ]);
+
+        return redirect('developers');
     }
 
     /**
@@ -72,7 +83,13 @@ class DevelopersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $developer = Developer::FindOrFail($id);
+        $developer->name = $request->input('name');
+        $developer->country = $request->input('country');
+        $developer->found_date = $request->input('found_date');
+        $developer->founder = $request->input('founder');
+        $developer->save();
+        return redirect('developers/'.$id);
     }
 
     /**
