@@ -1,6 +1,8 @@
 @extends('app')
 @section('title','遊戲列表')
 @section('game_content')
+        <a href  = "{{route('games.create')}}">新增遊戲
+        <a href = "{{route('games.index')}}">所有遊戲
         <table border=1 border-collapse=collapse class='table-spacing'>
                 <th> id</th>
                 <th> Game name</th>

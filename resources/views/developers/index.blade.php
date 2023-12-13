@@ -1,6 +1,8 @@
 @extends('app')
 @section('title','開發商列表')
 @section('game_content')
+        <a href  = "{{route('developers.create')}}">新增開發商
+        <a href = "{{route('developers.index')}}">所有開發商
         <table border=1 border-collapse=collapse class='table-spacing'>
                 <th> id</th>
                 <th> name</th>
