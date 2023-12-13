@@ -3,9 +3,11 @@
 @section('title', 'steam網站 - 列出所有開發商')
 
 @section('steam_contents')
-
-    <h1>開發商列表</h1><br/>
-    <table border="1">
+<div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
+    <a href="{{ route('developers.create') }} ">新增球隊</a>
+    <a href="{{ route('developers.index') }} ">所有球隊</a>
+</div>
+    <table>
     <tr>
         <th>流水號</th>
         <th>廠商名</th>

@@ -4,9 +4,12 @@
 
 @section('steam_contents')
 
-    <h1>遊戲列表</h1><br/>
+<div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
+    <a href="{{ route('games.create') }} ">新增遊戲</a>
+    <a href="{{ route('games.index') }} ">所有遊戲</a>
+</div>
 
-<table border="1">
+<table>
     <tr>
         <th>流水號</th>
         <th>遊戲名</th>

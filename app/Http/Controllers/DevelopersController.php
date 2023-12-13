@@ -26,6 +26,7 @@ class DevelopersController extends Controller
     public function create()
     {
         //
+        return view('developers.create');
     }
 
     /**
@@ -62,7 +63,8 @@ class DevelopersController extends Controller
      */
     public function edit($id)
     {
-        return Developer::findOrFail($id)->toArray();
+        $developer = Developer::findOrFail($id);
+        return view('developers.edit', ['developer'=>$developer]);
     }
 
     /**
