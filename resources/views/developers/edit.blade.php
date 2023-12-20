@@ -5,6 +5,7 @@
 @section('steam_theme', '編輯中的開發商')
 
 @section('steam_contents')
+    @include('message.list')
     {!! Form::model($developer, ['method'=>'PATCH', 'action'=>['\App\Http\Controllers\DevelopersController@update', $developer->id]]) !!}
     @include('developers.form', ['submitButtonText'=>'更新開發商資料'])
     {!! Form::close() !!}
