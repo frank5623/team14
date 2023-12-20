@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Game;
 use App\Models\Developer;
+use App\Http\Requests\CreateGameRequest;
 class GamesController extends Controller
 {
     /**
@@ -37,7 +37,7 @@ class GamesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateGameRequest $request)
     {
         $name = $request->input('name');
         $d_id = $request->input('d_id');
@@ -92,7 +92,7 @@ class GamesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateGameRequest $request, $id)
     {
         $game = Game::findOrFail($id);
 
