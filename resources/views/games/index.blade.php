@@ -3,6 +3,14 @@
 @section('game_content')
         <a href  = "{{route('games.create')}}">新增遊戲
         <a href = "{{route('games.index')}}">所有遊戲
+        <br>
+        <form action="{{url('/games/popular')}}" method="GET">
+                    {!! Form::label('number','最小熱門遊戲人數數量:') !!}
+                    {!! Form::text('number','2000') !!}
+                    <input class="btn btn-default" type ="submit" value="查詢" />
+                    @csrf
+                    
+        </form>
         <table border=1 border-collapse=collapse class='table-spacing'>
                 <th> id</th>
                 <th> Game name</th>
@@ -23,7 +31,7 @@
                 <td>{{$game['d_id']}}</td>
                 <td>{{$game['release_date']}} </td> 
                 <td>{{$game['price']}} </td> 
-                <td>{{$game['peak_player']}} </td> 
+                <td>{{$game['peak_player']}} </td>   
                 <td>{{$game['gametype']}} </td>
                 <td class='no-break'><a href="{{route('games.show',['id'=>$game['id']])}}">查詢</td>
                 <td class='no-break'><a href="{{route('games.edit',['id'=>$game['id']])}}">修改</td>
@@ -31,6 +39,7 @@
                     <input class="btn btn-default" type ="submit" value="刪除" />
                     @method('delete')
                     @csrf
+                </form>
                 </td>   
 
 
@@ -38,4 +47,5 @@
             @endforeach
 
         </table>
+        {{$games->withQueryString()->links()}}
 @endsection

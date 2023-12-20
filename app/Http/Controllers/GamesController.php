@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\CreateGamesRequest;
 use App\Models\Game;
 use App\Models\Developer;
+use Illuminate\Http\Request;
+
+
 class GamesController extends Controller
 {
     /**
@@ -14,8 +17,8 @@ class GamesController extends Controller
      */
     public function index()
     {
-        $game = Game::orderBy('id')->get()->toArray();
-        return view('games.index')->with('games',$game);
+        $games = Game::orderBy('id')->paginate(25);
+        return view('games.index')->with('games',$games);
     }
 
     /*
@@ -35,9 +38,8 @@ class GamesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateGamesRequest $request)
     {
-        
         $name = $request->input('name');
         $id = $request->input('d_id');
         $publisher = $request->input('publisher');
@@ -79,10 +81,17 @@ class GamesController extends Controller
     public function edit($id)
     {
         $game = Game::FindOrFail($id);
-        $developers = Developer::orderBy('developers.id','asc')->pluck('developers.name','developers.id');
+        $developers = Developer::orderBy('developers.id','dec')->pluck('developers.name','developers.id');
         $tags = $game->developer->id;
 
         return view('games.edit',['game'=>$game,'developers'=>$developers,'teamSelected'=>$tags]);
+    }
+
+    public function popular(Request $request)
+    {
+        $number = $request->input('number');
+        $games = Game::Popular($number)->paginate(25);
+        return view('games.index')->with('games',$games);
     }
 
     /**
@@ -92,7 +101,7 @@ class GamesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateGamesRequest $request, $id)
     {
         $game = Game::findorFail($id);
         $game->name = $request->input('name');

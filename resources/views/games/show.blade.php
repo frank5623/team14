@@ -1,5 +1,6 @@
 @extends('app')
 @section('title','遊戲列表')
+
 @section('game_content')    
 
     id：{{$game['id']}} <br>

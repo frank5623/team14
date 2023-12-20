@@ -21,4 +21,8 @@ class Game extends Model
     {
         return $this->belongsTo('App\Models\Developer','d_id','id');
     }
+    public function scopePopular($query,$number)
+    {
+        return $query->whereRaw("peak_player >= {$number} ORDER BY peak_player DESC");
+    }
 }
