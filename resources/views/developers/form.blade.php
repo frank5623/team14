@@ -19,5 +19,5 @@
     {!! Form::text('founder', null, ['class' => 'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::submit($submitButtonText, ['class'=>'btn btn-primary form-control']) !!}
+    {!! Form::submit('提交 ', ['class'=>'btn btn-primary form-control']) !!}
 </div>

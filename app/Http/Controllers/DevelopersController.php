@@ -13,9 +13,8 @@ class DevelopersController extends Controller
      */
     public function index()
     {
-        $D = Developer::all();
-        
-        return view("developers.index")->with("developers",$D);
+        $developers = Developer::orderBy('id')->get()->toArray();
+        return view('developers.index')->with('developers',$developers);
         
     }
 
@@ -97,7 +96,7 @@ class DevelopersController extends Controller
         $developer->founder = $request->input('founder');
         $developer->save();
 
-        return redirect('developers');
+        return redirect('developers/'.$id);
     }
 
     /**

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+
 use App\Models\Game;
 use App\Models\Developer;
+use App\Http\Requests\CreateGameRequest;
 class GamesController extends Controller
 {
     /**
@@ -14,9 +15,8 @@ class GamesController extends Controller
      */
     public function index()
     {
-        $G = Game::all();
-        return view("games.index")->with("games",$G);
-
+        $game = Game::orderBy('id')->get()->toArray();
+        return view('games.index')->with('games',$game);
     }
 
     /**
@@ -26,8 +26,8 @@ class GamesController extends Controller
      */
     public function create()
     {
-        $developers = Developer::orderBy('developers.id', 'asc')->pluck('developers.name', 'developers.id');
-        return view('games.create', ['developers' =>$developers, 'developerSelected' => null]);
+        $developers = Developer::orderBy('developers.id','asc')->pluck('developers.name','developers.id');
+        return view('games.create',['developers'=>$developers,'developerSelected'=>null]);
     }
 
     /**
@@ -36,11 +36,12 @@ class GamesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateGameRequest $request)
     {
         $name = $request->input('name');
-        $publisher = $request->input('publisher');
         $d_id = $request->input('d_id');
+        $publisher = $request->input('publisher');
+        
         $release_date = $request->input('release_date');
         $price = $request->input('price');
         $peak_player = $request->input('peak_player');
@@ -48,12 +49,14 @@ class GamesController extends Controller
 
         $game = Game::create([
             'name'=>$name,
-            'publisher'=>$publisher,
+            
             'd_id'=> $d_id,
+            'publisher'=>$publisher,
             'release_date'=>$release_date,
             'price'=>$price,
             'peak_player'=>$peak_player,
-            'gametype'=>$gametype]);
+            'gametype'=>$gametype,
+        ]);
         return redirect('games');
     }
 
@@ -81,9 +84,9 @@ class GamesController extends Controller
     public function edit($id)
     {
         $game = Game::findOrFail($id);
-        $developers = Developer::orderBy('developers.id', 'asc')->pluck('developers.name', 'developers.id');
-        $selected_tags = $game->developer->id;
-        return view('games.edit', ['games' =>$game, 'developers' => $developers, 'developerSelected' => $selected_tags]);
+        $developers = Developer::orderBy('developers.id','asc')->pluck('developers.name','developers.id');
+        $tags = $game->developer->id;
+        return view('games.edit',['game'=>$game,'developers'=>$developers,'teamSelected'=>$tags]);
     }
 
     /**
@@ -93,20 +96,21 @@ class GamesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateGameRequest $request, $id)
     {
         $game = Game::findOrFail($id);
 
         $game->name = $request->input('name');
-        $game->publisher = $request->input('publisher');
         $game->d_id = $request->input('d_id');
+        $game->publisher = $request->input('publisher');
+       
         $game->release_date = $request->input('release_date');
         $game->price = $request->input('price');
         $game->peak_player = $request->input('peak_player');
         $game->gametype = $request->input('gametype');
         $game->save();
 
-        return redirect('games');
+        return redirect('games/'.$id);
     }
 
     /**

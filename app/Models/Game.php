@@ -9,14 +9,15 @@ class Game extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id',
+        
         'name',
-        'publisher',
         'd_id',
+        'publisher',
+        
         'release_date',
         'price',
         'peak_player',
-        'game_type'
+        'gametype'
     ];
 
     public function Developer()
