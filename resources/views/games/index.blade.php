@@ -47,5 +47,5 @@
         </tr>
     @endforeach
 </table>
-
+{{ $games->withQueryString()->links() }}
 @endsection

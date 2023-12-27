@@ -14,11 +14,25 @@ class GamesController extends Controller
      */
     public function index()
     {
-        $G = Game::all();
-
+        $G = Game::paginate(5);
         return view("games.index")->with("games",$G);
     }
 
+    public function senior()
+    {
+        // 從 Model 拿特定條件下的資料
+        $games = Game::senior()->paginate(5);
+        $id = Game::allPositions()->pluck('games.id', 'games.id');
+        // 把資料送給 view
+        return view('games.index', ['games' => $players, 'positions'=>$id, 'selectedPosition'=>null]);
+    }
+    public function id(Request $request)
+    {
+        $games = Game::id($request->input('pos'))->paginate(5);
+        $id = Game::allid()->pluck('games.id', 'games.id');
+        $selectedPosition = $request->input('pos');
+        return view('games.index', ['games' => $games, 'id'=>$id, 'selectedPosition'=>$selectedPosition]);
+    }    
     /**
      * Show the form for creating a new resource.
      *
