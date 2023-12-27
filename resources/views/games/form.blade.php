@@ -4,7 +4,7 @@
 </div>
 <div class="form-group">
     {!! Form::label('d_id', '所屬開發商：') !!}
-    {!! Form::select('d_id',$developers ,$developerSelected,['class'=>'form-control']) !!}
+    {!! Form::select('d_id', $developers , $teamSelected, ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('publisher', '發行商：') !!}

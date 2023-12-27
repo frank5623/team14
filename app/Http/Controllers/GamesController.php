@@ -6,18 +6,41 @@ namespace App\Http\Controllers;
 use App\Models\Game;
 use App\Models\Developer;
 use App\Http\Requests\CreateGameRequest;
+use Illuminate\Http\Request;
 class GamesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     */
+     */ 
     public function index()
     {
-        $game = Game::orderBy('id')->get()->toArray();
-        return view('games.index')->with('games',$game);
+        $game = Game::paginate(5);
+        //$price = Game::allprice()->pluck('games.price', 'games.price');
+        //$peak_player = Game::allpeak_player()->pluck('games.peak_player', 'games.peak_player');
+        //return view('games.index', ['games' => $games,
+        //'id'=>$positions,
+        //'selectedid'=>null,
+        //'peak_player'=>$nationalities,
+        //'selectedpeak_player'=>null]);
+        return view("games.index")->with("games",$game);
     }
+
+    public function senior()//搜尋方法名稱
+    {
+        // 從 Model 拿特定條件下的資料
+        $games = Game::senior()->paginate(5);
+        return view('games.index')->with('games',$games);
+    }
+
+    public function senior1()//搜尋方法名稱
+    {
+        // 從 Model 拿特定條件下的資料
+        $games = Game::senior1()->paginate(5);
+        return view('games.index')->with('games',$games);
+    }
+   
 
     /**
      * Show the form for creating a new resource.
@@ -27,7 +50,7 @@ class GamesController extends Controller
     public function create()
     {
         $developers = Developer::orderBy('developers.id','asc')->pluck('developers.name','developers.id');
-        return view('games.create',['developers'=>$developers,'developerSelected'=>null]);
+        return view('games.create', ['developers' =>$developers, 'teamSelected' =>null]);
     }
 
     /**

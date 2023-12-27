@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\CreateDeveloperRequest;
 use App\Models\Developer;
 class DevelopersController extends Controller
 {
@@ -34,7 +34,7 @@ class DevelopersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateDeveloperRequest $request)
     {
         $name = $request->input('name');
         $country = $request->input('country');
@@ -86,7 +86,7 @@ class DevelopersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateDeveloperRequest $request, $id)
     {
         $developer = Developer::findOrFail($id);
 
@@ -107,8 +107,8 @@ class DevelopersController extends Controller
      */
     public function destroy($id)
     {
-        $developer = Developer::findOrFail($id);
-        $developer->delete();
+        $Developer = Developer::findOrFail($id);
+        $Developer->delete();
         return redirect('developers');
     }
 }

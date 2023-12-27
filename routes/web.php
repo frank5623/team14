@@ -21,7 +21,8 @@ Route::get('/', function () {
 Route::get('/', function () {
     return redirect('games');
 });
-
+Route::get('games/senior1', [GamesController::class, 'senior1'])->name('games.senior1');
+Route::get('games/senior', [GamesController::class, 'senior'])->name('games.senior');
 // 顯示顯示所有遊戲資料
 Route::get('games', [GamesController::class, 'index'])->name('games.index');
 // 顯示單一遊戲資料

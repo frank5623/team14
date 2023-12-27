@@ -10,7 +10,7 @@
 </div>
 <table border=1>
     <tr>
-        <th>流水號_id</th>
+        <th>ID</th>
         <th>廠商名</th>
         <th>註冊國籍</th>
         <th>成立年份</th>
@@ -23,21 +23,20 @@
 
     @foreach($developers as $developer)
     <tr>
-        <td> {{ $developer->id }} </td>
-        <td> {{ $developer->name }}</td>
-        <td>{{ $developer->country }}</td>
-        <td>{{ $developer->found_date }}</td>
-        <td>{{ $developer->founder }}</td>
-        <td><a href="{{route('developers.show', ['id'=>$developer->id]) }}">顯示</a></td>
-        <td><a href="{{route('developers.edit', ['id'=>$developer->id]) }}">修改</a></td>
-        <td>  
-            <form action="{{ url('/developers/delete', ['id'=>$developer->id]) }}" method="post">
-                <input class="btn btn-default" type="submit" value="刪除" />
-                @method('delete')
-                 @csrf
-            </form>
-        </td>
-    </tr>
-@endforeach
-</table>
+                <td>{{$developer['id']}}</td>
+                <td>{{$developer['name']}} </td> 
+                <td>{{$developer['country']}} </td> 
+                <td>{{$developer['found_date']}} </td> 
+                <td>{{$developer['founder']}} </td> 
+                <td><a href="{{route('developers.show',['id'=>$developer['id']])}}">查詢</td>
+                <td><a href="{{route('developers.edit',['id'=>$developer['id']])}}">修改</td>
+                <td>
+                    <form action="{{url('/developers/delete',['id'=>$developer['id']])}}" method="post">
+                    <input class="btn btn-default" type ="submit" value="刪除" />
+                    @method('delete')
+                    @csrf
+                </td>
+            </tr>
+            @endforeach
+        </table>
 @endsection

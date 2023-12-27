@@ -8,6 +8,8 @@
 <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
     <a href="{{ route('games.create') }} ">新增遊戲</a>
     <a href="{{ route('games.index') }} ">所有遊戲</a>
+    <a href="{{ route('games.senior1') }} ">低價位(小於300$)</a> 
+    <a href="{{ route('games.senior') }} ">高價位(大於300$)</a>
 </div>
 <table border=1>
     <tr>
@@ -46,4 +48,5 @@
     </tr>
     @endforeach
 </table>
+{{ $games->links() }}
 @endsection

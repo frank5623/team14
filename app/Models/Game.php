@@ -9,19 +9,25 @@ class Game extends Model
 {
     use HasFactory;
     protected $fillable = [
-        
         'name',
         'd_id',
         'publisher',
-        
         'release_date',
         'price',
         'peak_player',
-        'gametype'
+        'game_type'
     ];
 
-    public function Developer()
+    public function developer()
     {
         return $this->belongsTo('App\Models\Developer', 'd_id', 'id');
+    }
+    public function scopeSenior($query)
+    {
+        return $query->where('price', '>', 300)->orderBy('price', 'asc');
+    }
+    public function scopeSenior1($query1)
+    {
+        return $query1->where('price', '<=', 300)->orderBy('price', 'asc');
     }
 }
