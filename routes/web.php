@@ -19,6 +19,8 @@ Route::get('/', function () {
 });
 
 Route::get('games', [GamesController::class, 'index'])->name('games.index');
+
+Route::get('games/senior', [GamesController::class, 'senior'])->name('games.senior');
 // 顯示單一球員資料
 Route::get('games/{id}', [GamesController::class, 'show'])->where('id', '[0-9]+')->name('games.show');
 // 修改單一球員表單

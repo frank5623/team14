@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Game;
 use App\Models\Developer;
 use App\Http\Requests\CreateGameRequest;
+use Illuminate\Http\Request;
 class GamesController extends Controller
 {
     /**
@@ -17,22 +18,12 @@ class GamesController extends Controller
         $G = Game::paginate(5);
         return view("games.index")->with("games",$G);
     }
-
     public function senior()
     {
-        // 從 Model 拿特定條件下的資料
         $games = Game::senior()->paginate(5);
-        $id = Game::allPositions()->pluck('games.id', 'games.id');
-        // 把資料送給 view
-        return view('games.index', ['games' => $players, 'positions'=>$id, 'selectedPosition'=>null]);
+
+        return view('games.index')->with('games',$games);
     }
-    public function id(Request $request)
-    {
-        $games = Game::id($request->input('pos'))->paginate(5);
-        $id = Game::allid()->pluck('games.id', 'games.id');
-        $selectedPosition = $request->input('pos');
-        return view('games.index', ['games' => $games, 'id'=>$id, 'selectedPosition'=>$selectedPosition]);
-    }    
     /**
      * Show the form for creating a new resource.
      *

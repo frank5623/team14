@@ -7,6 +7,7 @@
 <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
     <a href="{{ route('games.create') }} ">新增遊戲</a>
     <a href="{{ route('games.index') }} ">所有遊戲</a>
+    <a href="{{ route('games.senior') }} ">300以上遊戲</a>
 </div>
 
 <table>
@@ -47,5 +48,5 @@
         </tr>
     @endforeach
 </table>
-{{ $games->withQueryString()->links() }}
+{{ $games->links() }}
 @endsection

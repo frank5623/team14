@@ -22,4 +22,8 @@ class Game extends Model
     {
         return $this->belongsTo('App\Models\Developer', 'd_id', 'id');
     }
+    public function scopeSenior($query)
+    {
+        return $query->where('price', '>', 300)->orderBy('price', 'asc');
+    }
 }
