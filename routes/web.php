@@ -15,10 +15,11 @@ use App\Http\Controllers\DevelopersController;
 */
 
 
-Route::get('/', function () {
-    return view('app');
-});
 
+Route::middleware(['auth'])->group(function(){
+    Route::get('/', function () {
+        return view('app');
+    });
 Route::get('games', [GamesController::class, 'index'])->name('games.index');
 Route::get('games/create', [GamesController::class, 'create'])->where('id','[0-9]+')->name('games.create');
 Route::post('games/store', [GamesController::class, 'store'])->name('games.store');
@@ -37,3 +38,7 @@ Route::get('developers/{id}/edit', [DevelopersController::class, 'edit'])->where
 Route::delete('developers/delete/{id}', [DevelopersController::class, 'destroy'])->where('id','[0-9]+')->name('developers.delete');
 Route::patch('developers/update/{id}', [DevelopersController::class, 'update'])->where('id','[0-9]+')->name('developers.update');
 
+});
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

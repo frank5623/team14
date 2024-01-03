@@ -70,6 +70,7 @@ class DevelopersController extends Controller
      */
     public function edit($id)
     {
+        parent::edit($id);
         $developer = Developer::FindOrFail($id);
         return view('developers.edit')->with('developer',$developer);
     }

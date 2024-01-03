@@ -80,8 +80,9 @@ class GamesController extends Controller
      */
     public function edit($id)
     {
+        parent::edit($id);
         $game = Game::FindOrFail($id);
-        $developers = Developer::orderBy('developers.id','dec')->pluck('developers.name','developers.id');
+        $developers = Developer::orderBy('developers.id','desc')->pluck('developers.name','developers.id');
         $tags = $game->developer->id;
 
         return view('games.edit',['game'=>$game,'developers'=>$developers,'teamSelected'=>$tags]);

@@ -1,7 +1,9 @@
 @extends('app')
 @section('title','遊戲列表')
 @section('game_content')
+        @can('admin')
         <a href  = "{{route('games.create')}}">新增遊戲
+        @endcan
         <a href = "{{route('games.index')}}">所有遊戲
         <br>
         <form action="{{url('/games/popular')}}" method="GET">
@@ -21,8 +23,12 @@
                 <th>peak_player</th>
                 <th> gametype</th>
                 <th>查詢</th>
+                @can('admin')
                 <th>修改</th>
                 <th>刪除</th>
+                @elsecan('MOD')
+                <th>修改</th>
+                @endcan
         @foreach($games as $game)
             <tr>
                 <td>{{$game['id'  ]}}</td>  
@@ -34,11 +40,15 @@
                 <td>{{$game['peak_player']}} </td>   
                 <td>{{$game['gametype']}} </td>
                 <td class='no-break'><a href="{{route('games.show',['id'=>$game['id']])}}">查詢</td>
+                @can('admin')
                 <td class='no-break'><a href="{{route('games.edit',['id'=>$game['id']])}}">修改</td>
                 <td><form action="{{url('/games/delete',['id'=>$game['id']])}}" method="post">
                     <input class="btn btn-default" type ="submit" value="刪除" />
                     @method('delete')
                     @csrf
+                @elsecan('MOD')
+                <td class='no-break'><a href="{{route('games.edit',['id'=>$game['id']])}}">修改</td>
+                @endcan
                 </form>
                 </td>   
 
