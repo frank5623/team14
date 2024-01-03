@@ -4,8 +4,10 @@
 
 @section('steam_contents')
 <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
+    @can('admin')
     <a href="{{ route('developers.create') }} ">新增開發商</a>
     <a href="{{ route('developers.index') }} ">所有開發商</a>
+    @endcan
 </div>
     <table>
     <tr>
@@ -15,8 +17,12 @@
         <th>成立年份</th>
         <th>創辦人</th>
         <th>操作1</th>
+        @can('admin')
         <th>操作2</th>
         <th>操作3</th>
+        @elsecan('manager')
+        <th>操作2</th>
+        @endcan
     </tr>    
 
     @foreach($developers as $developer)
@@ -28,6 +34,7 @@
             <td>{{ $developer->found_date }}</td>
             <td>{{ $developer->founder }}</td>
             <td><a href="{{ route('developers.show', ['id'=>$developer->id]) }}">顯示</a></td>
+            @can('admin')
             <td><a href="{{ route('developers.edit', ['id'=>$developer->id]) }}">修改</a></td>
             <td>
                 <form action="{{ url('/developers/delete', ['id' => $developer->id]) }}" method="post">
@@ -36,6 +43,9 @@
                     @csrf
                 </form>
             </td>
+            @elsecan('manager')
+            <td><a href="{{ route('developers.edit', ['id'=>$developer->id]) }}">修改</a></td>
+            @endcan
         </tr>
     @endforeach
 </table>

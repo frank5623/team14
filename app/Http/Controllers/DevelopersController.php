@@ -76,6 +76,8 @@ class DevelopersController extends Controller
      */
     public function edit($id)
     {
+        parent::edit($id);
+        
         $developer = Developer::findOrFail($id);
         return view('developers.edit', ['developer'=>$developer]);
     }
