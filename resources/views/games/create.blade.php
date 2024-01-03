@@ -2,7 +2,6 @@
 
 @section('title', '建立遊戲表單')
 
-/**  @section('steam_theme', '建立遊戲的表單')   */
 
 @section('steam_contents')
     @include('message.list')
