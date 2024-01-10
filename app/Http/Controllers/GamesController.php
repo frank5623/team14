@@ -15,12 +15,12 @@ class GamesController extends Controller
      */
     public function index()
     {
-        $G = Game::paginate(5);
+        $G = Game::paginate(20);
         return view("games.index")->with("games",$G);
     }
     public function senior()
     {
-        $games = Game::senior()->paginate(5);
+        $games = Game::senior()->paginate(20);
 
         return view('games.index')->with('games',$games);
     }
