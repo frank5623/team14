@@ -38,14 +38,14 @@
 
     @foreach($games as $game)
     <tr>
-        <td>{{$game['id'  ]}}</td>  
-        <td>{{$game['name']}} </td> 
-        <td>{{$game['publisher']}} </td> 
-        <td>{{$game['d_id']}}</td>
-        <td>{{$game['release_date']}} </td> 
-        <td>{{$game['price']}} </td> 
-        <td>{{$game['peak_player']}} </td> 
-        <td>{{$game['gametype']}} </td>
+            <td>{{ $game->id }}</td>    
+            <td>{{ $game->name }}</td>
+            <td>{{ $game->publisher }}</td>
+            <td>{{ $game->developer->name }}</td>
+            <td>{{ $game->release_date }}</td>
+            <td>{{ $game->price }}</td>
+            <td>{{ $game->peak_player }}</td>
+            <td>{{ $game->gametype }}</td>
         <td><a href="{{route('games.show', ['id'=>$game['id']]) }}">顯示</a></td>
         @can('admin')
         <td><a href="{{route('games.edit', ['id'=>$game['id']]) }}">修改</a></td>

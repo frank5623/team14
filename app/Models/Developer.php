@@ -15,7 +15,7 @@ class Developer extends Model
         'founder'
     ];
 
-    public function developers()
+    public function games()
     {
         return $this->hasMany('App\Models\game', 'd_id');
     }
