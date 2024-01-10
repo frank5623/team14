@@ -46,7 +46,14 @@ video {
     background-color: #fff;
     background-color: rgba(255, 255, 255, var(--bg-opacity))
 }
-
+.exampletwo {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+  }
+.exampleone
+{
+    color:#718096;
+}
 .bg-gray-100 {
     --bg-opacity: 1;
     background-color: #f7fafc;

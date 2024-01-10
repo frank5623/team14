@@ -58,6 +58,7 @@ class DevelopersController extends Controller
     public function show($id)
     {
         $developer = Developer::FindOrFail($id);
+        return $developer;
         $game = $developer->games;
         return view('developers.show',['developer'=>$developer,'games'=>$game]);
     }
